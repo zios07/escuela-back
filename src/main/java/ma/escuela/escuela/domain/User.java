@@ -17,6 +17,9 @@ public class User {
 
     private String lastName;
 
+    @Lob
+    private byte[] photo;
+
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate bDate;
 
@@ -31,11 +34,10 @@ public class User {
         super();
     }
 
-    public User(Long id, String firstName, String lastName, LocalDate bDate, Account account, Role role) {
-        super();
-        this.id = id;
+    public User(String firstName, String lastName, byte[] photo, LocalDate bDate, Account account, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.photo = photo;
         this.bDate = bDate;
         this.account = account;
         this.role = role;
@@ -65,6 +67,14 @@ public class User {
         this.lastName = lastName;
     }
 
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
+
     public LocalDate getbDate() {
         return bDate;
     }
@@ -88,6 +98,4 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
-
-
 }
