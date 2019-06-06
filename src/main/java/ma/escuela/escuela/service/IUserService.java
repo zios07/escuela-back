@@ -26,4 +26,6 @@ public interface IUserService {
     User getConnectedUser() throws NotFoundException;
 
     User updateUserProfile(ProfileDTO user);
+
+    User getUserByUsername(String username);
 }

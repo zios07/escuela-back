@@ -114,4 +114,9 @@ public class UserService implements IUserService {
         }
         return repo.save(user);
     }
+
+    @Override
+    public User getUserByUsername(String username) {
+        return repo.findByAccountUsername(username);
+    }
 }

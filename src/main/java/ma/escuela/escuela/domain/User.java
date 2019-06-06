@@ -17,6 +17,8 @@ public class User {
 
     private String lastName;
 
+    private String gender;
+
     @Lob
     private byte[] photo;
 
@@ -41,6 +43,17 @@ public class User {
         this.bDate = bDate;
         this.account = account;
         this.role = role;
+    }
+
+
+    public User(String firstName, String lastName, byte[] photo, LocalDate bDate, Account account, Role role, String gender) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.photo = photo;
+        this.bDate = bDate;
+        this.account = account;
+        this.role = role;
+        this.gender = gender;
     }
 
     public Long getId() {
@@ -97,5 +110,13 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

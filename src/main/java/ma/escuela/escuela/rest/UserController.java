@@ -27,8 +27,14 @@ public class UserController {
 
 
 	@GetMapping(value = "/find/connected")
-	public ResponseEntity<User> findUser() throws NotFoundException {
+	public ResponseEntity<User> findConnectedUser() throws NotFoundException {
 		User user = service.getConnectedUser();
+		return new ResponseEntity<>(user, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/username/{username}")
+	public ResponseEntity<User> findUserByUsername(@PathVariable String username) throws NotFoundException {
+		User user = service.getUserByUsername(username);
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 
