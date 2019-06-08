@@ -5,6 +5,8 @@ import ma.escuela.escuela.exception.NotFoundException;
 import ma.escuela.escuela.exception.ServiceException;
 import ma.escuela.escuela.service.ICoursService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +27,14 @@ public class CoursController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Cours>> findAllCourses() {
-        List<Cours> courses = service.findAllCourses();
+    public ResponseEntity<Page<Cours>> findAllCourses(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "0") int size) {
+        Page<Cours> courses = service.findAllCourses(PageRequest.of(page, size));
+        return new ResponseEntity<>(courses, HttpStatus.OK);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<Page<Cours>> searchCourses(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "0") int size, @RequestParam String keyword) {
+        Page<Cours> courses = service.searchCourses(PageRequest.of(page, size), keyword);
         return new ResponseEntity<>(courses, HttpStatus.OK);
     }
 

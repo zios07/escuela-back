@@ -19,9 +19,9 @@ public class UtilContants {
 	public static final String SIGN_UP_URL = "/users/sign-up";
 	public static final String LOGIN_URL = "/api/v1/authentication/authenticate";
 	public static final String REGISTRATION_URL = "/api/users/register";
-	public static final String COURS_URL = "/api/courses";
-	public static final String PANIER_URL = "/api/paniers";
-	public static final String TEACHERS_URL = "/api/teachers";
+	public static final String COURS_URL = "/api/courses/**";
+	public static final String PANIER_URL = "/api/paniers/**";
+	public static final String TEACHERS_URL = "/api/teachers/**";
 	public static final String HOME_URL = "/";
 	public static final String RESOURCES_URL = "/**";
 

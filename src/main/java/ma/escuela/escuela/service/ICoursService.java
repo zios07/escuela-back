@@ -2,7 +2,8 @@ package ma.escuela.escuela.service;
 
 import ma.escuela.escuela.domain.Cours;
 import ma.escuela.escuela.exception.NotFoundException;
-import ma.escuela.escuela.exception.ServiceException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface ICoursService {
 
     Cours findCours(long id) throws NotFoundException;
 
-    List<Cours> findAllCourses();
+    Page<Cours> findAllCourses(PageRequest of);
 
     void deleteCours(long id) throws NotFoundException;
 
@@ -20,4 +21,5 @@ public interface ICoursService {
 
     Cours updateCours(Cours cours) throws NotFoundException;
 
+    Page<Cours> searchCourses(PageRequest of, String keyword);
 }
