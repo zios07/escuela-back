@@ -52,4 +52,9 @@ public class RoleService implements IRoleService {
 		return repo.findByRoleCode(ROLE_CODE_ADMIN);
 	}
 
+	@Override
+	public Role findByCode(String roleCode) {
+		return repo.findByRoleCode(roleCode);
+	}
+
 }

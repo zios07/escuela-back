@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ICoursService {
 
-    Cours addCours(Cours cours) throws ServiceException;
+    Cours addCours(Cours cours);
 
     Cours findCours(long id) throws NotFoundException;
 

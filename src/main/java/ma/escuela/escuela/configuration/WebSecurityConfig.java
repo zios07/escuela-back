@@ -23,8 +23,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
-import static ma.escuela.escuela.util.UtilContants.LOGIN_URL;
-import static ma.escuela.escuela.util.UtilContants.REGISTRATION_URL;
+import static ma.escuela.escuela.util.UtilContants.*;
 
 @Configuration
 @EnableWebSecurity
@@ -42,6 +41,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, LOGIN_URL, REGISTRATION_URL)
+                .permitAll()
+                .antMatchers(COURS_URL, PANIER_URL, TEACHERS_URL)
                 .permitAll()
                 .antMatchers(HttpMethod.OPTIONS)
                 .permitAll()

@@ -18,16 +18,16 @@ public class CoursService implements ICoursService {
     private CoursRepository coursRepository;
 
     @Override
-    public Cours addCours(Cours cours) throws ServiceException {
+    public Cours addCours(Cours cours) {
         return coursRepository.save(cours);
     }
 
     @Override
     public Cours findCours(long id) throws NotFoundException {
-        Optional<Cours> coursOptional = coursRepository.findById(id);
-        if (!coursOptional.isPresent())
+        Optional<Cours> courseOptional = coursRepository.findById(id);
+        if (!courseOptional.isPresent())
             throw new NotFoundException("COURS.NOT.FOUND", "Cours not found with id : " + id);
-        return coursOptional.get();
+        return courseOptional.get();
     }
 
     @Override

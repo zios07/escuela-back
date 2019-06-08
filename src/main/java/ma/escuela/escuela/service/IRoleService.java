@@ -26,4 +26,5 @@ public interface IRoleService {
 	 */
 	Role getRoleAdmin();
 
+    Role findByCode(String roleCode);
 }

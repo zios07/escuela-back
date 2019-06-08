@@ -42,6 +42,9 @@ public class UserService implements IUserService {
             if (user.getRole() == null) {
                 Role role = roleService.getRoleUser();
                 user.setRole(role);
+            } else {
+                Role role = roleService.findByCode(user.getRole().getRoleCode());
+                user.setRole(role);
             }
         }
 
