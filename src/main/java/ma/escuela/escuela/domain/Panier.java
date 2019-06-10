@@ -1,6 +1,7 @@
 package ma.escuela.escuela.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,6 +17,10 @@ public class Panier {
 
     @OneToOne
     private User user;
+
+    public Panier() {
+        this.courses = new ArrayList<>();
+    }
 
     public Panier(List<Cours> courses, User user) {
         this.courses = courses;

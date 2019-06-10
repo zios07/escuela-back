@@ -3,6 +3,7 @@ package ma.escuela.escuela.domain;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "COURS_TABLE")
@@ -101,5 +102,25 @@ public class Cours {
 
     public void setTests(List<Test> tests) {
         this.tests = tests;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cours)) return false;
+        Cours cours = (Cours) o;
+        return payant == cours.payant &&
+                Objects.equals(id, cours.id) &&
+                Objects.equals(nom, cours.nom) &&
+                Objects.equals(description, cours.description) &&
+                Objects.equals(nbVisiteurs, cours.nbVisiteurs) &&
+                Objects.equals(niveau, cours.niveau) &&
+                Objects.equals(prix, cours.prix) &&
+                Objects.equals(tests, cours.tests);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nom, description, nbVisiteurs, niveau, payant, prix, tests);
     }
 }

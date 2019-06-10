@@ -31,6 +31,9 @@ public class User {
     @ManyToOne
     private Role role;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Panier panier;
+
 
     public User() {
         super();
@@ -43,6 +46,7 @@ public class User {
         this.bDate = bDate;
         this.account = account;
         this.role = role;
+        this.panier = new Panier();
     }
 
 
@@ -54,6 +58,7 @@ public class User {
         this.account = account;
         this.role = role;
         this.gender = gender;
+        this.panier = new Panier();
     }
 
     public Long getId() {
@@ -118,5 +123,13 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public Panier getPanier() {
+        return panier;
+    }
+
+    public void setPanier(Panier panier) {
+        this.panier = panier;
     }
 }
