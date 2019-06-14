@@ -11,6 +11,9 @@ public class Eleve extends User {
 
     private String niveauScolaire;
 
+    @ManyToOne
+    private User parent;
+
     @ManyToMany
     private List<Jeux> jeux;
 
@@ -23,22 +26,29 @@ public class Eleve extends User {
     @ManyToMany
     private List<Activity> activities;
 
+    public Eleve () {
 
-    public Eleve(User user, String niveauScolaire, List<Jeux> jeux, List<Article> articles, List<Matiere> matieres, List<Activity> activities) {
-        this(user.getFirstName(), user.getLastName(), user.getPhoto(), user.getbDate(), user.getAccount(), user.getRole(), niveauScolaire, jeux, articles, matieres, activities);
     }
 
-    public Eleve(String niveauScolaire, List<Jeux> jeux, List<Article> articles, List<Matiere> matieres, List<Activity> activities) {
+    public Eleve(User user, String niveauScolaire, List<Jeux> jeux, List<Article> articles, List<Matiere> matieres, List<Activity> activities, User parent) {
+        this(user.getFirstName(), user.getLastName(), user.getPhoto(), user.getbDate(), user.getAccount(), user.getRole(), niveauScolaire, parent, jeux, articles, matieres, activities);
+    }
+
+
+    public Eleve(String firstName, String lastName, byte[] photo, LocalDate bDate, Account account, Role role, String niveauScolaire, User parent, List<Jeux> jeux, List<Article> articles, List<Matiere> matieres, List<Activity> activities) {
+        super(firstName, lastName, photo, bDate, account, role);
         this.niveauScolaire = niveauScolaire;
+        this.parent = parent;
         this.jeux = jeux;
         this.articles = articles;
         this.matieres = matieres;
         this.activities = activities;
     }
 
-    public Eleve(String firstName, String lastName, byte[] photo, LocalDate bDate, Account account, Role role, String niveauScolaire, List<Jeux> jeux, List<Article> articles, List<Matiere> matieres, List<Activity> activities) {
-        super(firstName, lastName, photo, bDate, account, role);
+    public Eleve(String firstName, String lastName, byte[] photo, LocalDate bDate, Account account, Role role, String gender, String niveauScolaire, User parent, List<Jeux> jeux, List<Article> articles, List<Matiere> matieres, List<Activity> activities) {
+        super(firstName, lastName, photo, bDate, account, role, gender);
         this.niveauScolaire = niveauScolaire;
+        this.parent = parent;
         this.jeux = jeux;
         this.articles = articles;
         this.matieres = matieres;
@@ -83,5 +93,13 @@ public class Eleve extends User {
 
     public void setActivities(List<Activity> activities) {
         this.activities = activities;
+    }
+
+    public User getParent() {
+        return parent;
+    }
+
+    public void setParent(User parent) {
+        this.parent = parent;
     }
 }

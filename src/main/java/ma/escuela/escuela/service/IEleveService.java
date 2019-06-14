@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IEleveService {
 
-    Eleve addEleve(Eleve eleve) throws ServiceException;
+    Eleve addEleve(Eleve eleve) throws ServiceException, NotFoundException;
 
     Eleve findEleve(long id) throws NotFoundException;
 
@@ -26,4 +26,6 @@ public interface IEleveService {
     Eleve getConnectedEleve() throws NotFoundException;
 
     Eleve updateEleveProfile(ProfileDTO eleve);
+
+    List<Eleve> findElevesByParent(Long parentID);
 }

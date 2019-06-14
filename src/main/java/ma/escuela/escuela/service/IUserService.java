@@ -11,8 +11,6 @@ public interface IUserService {
 
     User addUser(User user) throws ServiceException;
 
-    User addEnfant(User user) throws ServiceException;
-
     User findUser(long id) throws NotFoundException;
 
     List<User> findAllUsers();

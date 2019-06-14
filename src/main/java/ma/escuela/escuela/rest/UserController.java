@@ -50,13 +50,6 @@ public class UserController {
 		return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
 	}
 
-
-	@PostMapping("new/enfant")
-	public ResponseEntity<User> addEnfant(@RequestBody User user) throws ServiceException {
-		User savedUser = service.addEnfant(user);
-		return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
-	}
-
     @PutMapping
     public ResponseEntity<User> updateUser(@RequestBody User user) throws NotFoundException {
         User updatedUser = service.updateUser(user);

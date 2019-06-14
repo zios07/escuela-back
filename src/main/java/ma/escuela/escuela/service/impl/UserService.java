@@ -55,19 +55,6 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User addEnfant(User user) throws ServiceException {
-        if (user.getAccount() != null && user.getAccount().getUsername() != null)
-            if (repo.findByAccountUsername(user.getAccount().getUsername()) != null) {
-                throw new ServiceException("USERNAME.ALREADY.EXISTS", "Username already exists");
-            }
-        user.setRole(roleService.getRoleEleve());
-        if (user.getAccount() != null) {
-            user.getAccount().setPassword(passwordEncoder.encode(user.getAccount().getPassword()));
-        }
-        return repo.save(user);
-    }
-
-    @Override
     public User findUser(long id) throws NotFoundException {
         if (!repo.existsById(id))
             throw new NotFoundException("USER.NOT.FOUND", "No user found with id: " + id);
