@@ -47,7 +47,14 @@ public class UserController {
 	@PostMapping("register")
 	public ResponseEntity<User> addUser(@RequestBody User user) throws ServiceException {
 		User savedUser = service.addUser(user);
-		return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
+		return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+	}
+
+
+	@PostMapping("new/enfant")
+	public ResponseEntity<User> addEnfant(@RequestBody User user) throws ServiceException {
+		User savedUser = service.addEnfant(user);
+		return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
 	}
 
     @PutMapping
@@ -67,12 +74,5 @@ public class UserController {
 		service.deleteUser(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-
-	@PostMapping(value = "/search")
-	public ResponseEntity<List<User>> searchUsers(@RequestBody User userDto) throws NotFoundException {
-		List<User> users = service.searchUsers(userDto);
-		return new ResponseEntity<>(users, HttpStatus.OK);
-	}
-
 
 }

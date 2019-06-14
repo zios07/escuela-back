@@ -31,7 +31,7 @@ public class UserService implements IUserService {
     private BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public User addUser(User user)  throws ServiceException {
+    public User addUser(User user) throws ServiceException {
         if (user.getAccount() != null && user.getAccount().getUsername() != null)
             if (repo.findByAccountUsername(user.getAccount().getUsername()) != null) {
                 throw new ServiceException("USERNAME.ALREADY.EXISTS", "Username already exists");
@@ -48,6 +48,19 @@ public class UserService implements IUserService {
             }
         }
 
+        if (user.getAccount() != null) {
+            user.getAccount().setPassword(passwordEncoder.encode(user.getAccount().getPassword()));
+        }
+        return repo.save(user);
+    }
+
+    @Override
+    public User addEnfant(User user) throws ServiceException {
+        if (user.getAccount() != null && user.getAccount().getUsername() != null)
+            if (repo.findByAccountUsername(user.getAccount().getUsername()) != null) {
+                throw new ServiceException("USERNAME.ALREADY.EXISTS", "Username already exists");
+            }
+        user.setRole(roleService.getRoleEleve());
         if (user.getAccount() != null) {
             user.getAccount().setPassword(passwordEncoder.encode(user.getAccount().getPassword()));
         }
@@ -112,7 +125,7 @@ public class UserService implements IUserService {
         User user = repo.findById(profileDTO.getUserID()).get();
         user.setFirstName(profileDTO.getFirstName());
         user.setLastName(profileDTO.getLastName());
-        if(!Strings.isEmpty(profileDTO.getPassword())) {
+        if (!Strings.isEmpty(profileDTO.getPassword())) {
             user.getAccount().setPassword(passwordEncoder.encode(profileDTO.getPassword()));
         }
         return repo.save(user);

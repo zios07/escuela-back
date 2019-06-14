@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static ma.escuela.escuela.util.UtilContants.ROLE_CODE_ADMIN;
-import static ma.escuela.escuela.util.UtilContants.ROLE_CODE_USER;
+import static ma.escuela.escuela.util.UtilContants.*;
 
 @Service
 public class RoleService implements IRoleService {
@@ -55,6 +54,11 @@ public class RoleService implements IRoleService {
 	@Override
 	public Role findByCode(String roleCode) {
 		return repo.findByRoleCode(roleCode);
+	}
+
+	@Override
+	public Role getRoleEleve() {
+		return repo.findByRoleCode(ROLE_CODE_ELEVE);
 	}
 
 }

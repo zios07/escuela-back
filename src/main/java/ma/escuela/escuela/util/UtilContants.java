@@ -8,6 +8,7 @@ public class UtilContants {
 
 	/* Utils for role service */
 	public static final String ROLE_CODE_USER = "USER";
+	public static final String ROLE_CODE_ELEVE = "ELEVE";
 	public static final String ROLE_CODE_ADMIN = "ADMIN";
 
 	/* Utils for Jwt security system */
