@@ -76,6 +76,7 @@ public class EleveService implements IEleveService {
         Eleve oldEleve = eleveRepository.findByAccountUsername(eleve.getAccount().getUsername());
         eleve.setId(oldEleve.getId());
         eleve.getAccount().setId(oldEleve.getAccount().getId());
+        eleve.setParent(oldEleve.getParent());
         return eleveRepository.save(eleve);
     }
 
