@@ -48,11 +48,21 @@ public class CoursService implements ICoursService {
 
     @Override
     public Cours updateCours(Cours cours) throws NotFoundException {
+        // We're not updating tests for now, let's just keep the ones in the database
+        if(cours.getId() != null) {
+            Cours dbCours = coursRepository.getOne(cours.getId());
+            cours.setTests(dbCours.getTests());
+        }
         return coursRepository.save(cours);
     }
 
     @Override
     public Page<Cours> searchCourses(PageRequest pageRequest, String keyword) {
         return coursRepository.findByNomContaining(keyword, pageRequest);
+    }
+
+    @Override
+    public List<Cours> findAllCourses() {
+        return coursRepository.findAll();
     }
 }

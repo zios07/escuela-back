@@ -22,4 +22,6 @@ public interface ICoursService {
     Cours updateCours(Cours cours) throws NotFoundException;
 
     Page<Cours> searchCourses(PageRequest of, String keyword);
+
+    List<Cours> findAllCourses();
 }

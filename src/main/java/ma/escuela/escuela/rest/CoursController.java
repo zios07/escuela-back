@@ -27,8 +27,14 @@ public class CoursController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Cours>> findAllCourses(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "0") int size) {
+    public ResponseEntity<Page<Cours>> findAllCoursesPaginated(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "0") int size) {
         Page<Cours> courses = service.findAllCourses(PageRequest.of(page, size));
+        return new ResponseEntity<>(courses, HttpStatus.OK);
+    }
+
+    @GetMapping("all")
+    public ResponseEntity<List<Cours>> findAllCourses() {
+        List<Cours> courses = service.findAllCourses();
         return new ResponseEntity<>(courses, HttpStatus.OK);
     }
 
@@ -41,6 +47,12 @@ public class CoursController {
     @PostMapping
     public ResponseEntity<Cours> addCourse(@RequestBody Cours cours) throws ServiceException {
         Cours savedCourse = service.addCours(cours);
+        return new ResponseEntity<>(savedCourse, HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    public ResponseEntity<Cours> updateCourse(@RequestBody Cours cours) throws ServiceException, NotFoundException {
+        Cours savedCourse = service.updateCours(cours);
         return new ResponseEntity<>(savedCourse, HttpStatus.CREATED);
     }
 
